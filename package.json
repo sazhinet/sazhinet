@@ -1,7 +1,7 @@
 {
   "name": "sazhinet",
-  "version": "v0.0.1",
-  "description": "Homepage for Danil Kutkevich",
+  "version": "v0.0.2",
+  "description": "sazhi.net corporate site",
   "homepage": "http://sazhi.net",
   "repository": {
     "type": "git",
@@ -11,20 +11,14 @@
     "url": "https://github.com/sazhinet/sazhinet/issues"
   },
   "license": "ISC",
-  "author": "Danil Kutkevich",
   "dependencies": {},
   "devDependencies": {
     "divshot-cli": "latest",
-    "grunt-cli": "latest",
-    "grunt-contrib-clean": "latest",
-    "grunt-contrib-connect": "latest",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-watch": "latest",
-    "yo": "latest"
+    "harp": "latest"
   },
   "scripts": {
-    "start": "grunt build serve",
-    "test": "grunt test"
+    "start": "harp server",
+    "test": "harp compile"
   },
   "engines": {
     "node": "latest"

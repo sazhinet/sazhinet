@@ -2,5 +2,5 @@
   "clean_urls": true,
   "error_page": "404.html",
   "name": "sazhinet",
-  "root": "./dist"
+  "root": "./www"
 }
