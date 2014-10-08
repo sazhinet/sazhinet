@@ -25,5 +25,5 @@ npm start
 ### Deploy
 
 ````bash
-npm test && `npm bin`/divshot push production
+npm test && `npm bin`/divshot push && production
 ````
