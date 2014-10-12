@@ -1,7 +1,7 @@
 sazhi.net
 =========
 
-<http://sazhi.net> corporate site.
+<http://sazhi.net> corporate site
 
 [![Build Status](http://img.shields.io/travis/sazhinet/sazhinet/master.svg)](https://travis-ci.org/sazhinet/sazhinet)
 [![devDependency Status](http://img.shields.io/david/dev/sazhinet/sazhinet.svg)](https://david-dm.org/sazhinet/sazhinet#info=devDependencies)

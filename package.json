@@ -14,8 +14,7 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "latest",
-    "gulp-jade": "latest",
-    "gulp-rename": "latest"
+    "gulp-jade": "latest"
   },
   "scripts": {
     "start": "gulp",
