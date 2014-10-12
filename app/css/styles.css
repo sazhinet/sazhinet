@@ -1,0 +1,141 @@
+html, body {
+height: 100%;
+}
+
+body {
+background: #666;
+font-family: Tahoma, Geneva, Sans-serif;
+/*text-align: center;*/
+/*font-size: 14px;*/
+}
+
+#page {
+font-family: Tahoma, Geneva, Sans-serif;
+font-size: medium;
+margin: 0 auto;
+min-width: 966px;
+width: 966px;
+height: 100%;
+}
+
+.form-weight-normal {
+    width: 400px;
+}
+
+.autoclear {
+    color: #aaa;
+}
+
+.autoclear-normalcolor {
+    color: #000;
+}
+
+
+#mh {
+margin: 0;
+margin-top:-8px;
+width: 966px;
+background: #311402;
+padding: 0px;
+border: 0px;
+border-collapse:collapse;
+}
+
+
+.content {min-height: 100%; background: #333333;font-family: Tahoma, Geneva, Sans-serif;
+}
+
+#maincont {
+font-family: Tahoma, Geneva, Sans-serif;
+min-height: 580px;
+width:100%;
+margin:auto;
+height: auto !important;
+background: #333333 url(../images/back.jpg) no-repeat;
+/* border: 1px solid */ /*TEST*/
+}
+
+
+#matheader {height:60px}
+
+
+#matfooter {}
+
+fieldset {
+margin: auto;
+margin-top:60px;
+margin-bottom:10px;
+border: 4px double;
+width: 180px;
+color: #ccc;
+font-family: Tahoma, Geneva, sans-serif;
+font-size: small;
+font-style: normal;
+}
+
+#regform {margin:auto}
+
+/*#com-form-login {
+margin: auto;
+margin-top:60px;
+width: 150px;
+}
+
+#contacts {margin-left:-40px}
+table#contacts {border:1px solid #333;border-collapse:collapse}*/
+
+
+
+/* Content articles */
+
+
+.Main_text_white {
+  color: #ccc;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: small;
+  font-style: normal;
+  text-align: center;
+}
+
+.text_black {
+  color: #000;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: small;
+}
+.Headline {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: medium;
+  font-style: normal;
+  color: #999;
+}
+.Body_left_white {
+  font-size: small;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-style: normal;
+  color: #CCC;
+}
+.Head_Red {
+  color: #F00;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: medium;
+  font-style: normal;
+}
+
+/* end */
+
+
+/* .componentheading {margin:auto; width:600px;} */
+
+#objlist {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: medium;
+  font-style: normal;
+  text-align:left
+}
+
+#map {
+width: auto;
+border:2px solid;
+border-color:#d6d6d6;
+
+}

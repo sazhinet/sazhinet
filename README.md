@@ -34,5 +34,7 @@ rsync --checksum \
       --partial \
       --progress \
       --stats \
+      --delete \
+      --skip-compress=jpg,gif,png,ico \
       ./dist/* example.com:/path/to/sazhinet
 ````

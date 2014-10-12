@@ -3,8 +3,12 @@ var gulp = require('gulp');
 var jade = require('gulp-jade');
 
 gulp.task('copy', function() {
+  gulp.src('./app/images/favicon.ico')
+    .pipe(gulp.dest("./dist/"));
   gulp.src('./app/images/logo_main.png')
     .pipe(gulp.dest("./dist/images"));
+  gulp.src('./app/css/*.css')
+    .pipe(gulp.dest("./dist/assets/"));
 });
 
 gulp.task('jade', function() {
