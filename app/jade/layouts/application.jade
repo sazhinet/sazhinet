@@ -50,7 +50,12 @@ html.no-js(lang='')
             tbody
               tr
                 td
-                  a#active_menu.mainlevel(href='home', title='Главная')
+                  a#active_menu.mainlevel(
+                    onmouseover="MlImageOn('ml_img_1_1')",
+                    onmouseout="MlImageOff('ml_img_1_1')",
+                    href='home',
+                    title='Главная'
+                  )
                     img(
                       src='modules/mod_mljoostinamenu/menuimages/menu_over_01.jpg',
                       name='ml_img_1_1',
