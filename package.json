@@ -13,12 +13,13 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "divshot-cli": "latest",
-    "harp": "latest"
+    "gulp": "latest",
+    "gulp-jade": "latest",
+    "gulp-rename": "latest"
   },
   "scripts": {
-    "start": "harp server",
-    "test": "harp compile"
+    "start": "gulp",
+    "test": "gulp"
   },
   "engines": {
     "node": "latest"

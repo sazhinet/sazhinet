@@ -13,7 +13,7 @@ Development
 ### Install
 
 ````bash
-nvm use 0 && cd /path/to/sazhinet && npm install --python=python2.7
+nvm use 0 && cd /path/to/sazhinet && npm install
 ````
 
 ### Run
@@ -26,4 +26,13 @@ npm start
 
 ````bash
 npm test && `npm bin`/divshot push && production
+rsync --checksum \
+      --human-readable \
+      --archive \
+      --verbose \
+      --compress \
+      --partial \
+      --progress \
+      --stats \
+      ./dist/* example.com:/path/to/sazhinet
 ````
