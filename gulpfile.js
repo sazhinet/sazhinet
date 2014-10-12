@@ -4,11 +4,13 @@ var jade = require('gulp-jade');
 
 gulp.task('copy', function() {
   gulp.src('./app/images/favicon.ico')
-    .pipe(gulp.dest("./dist/"));
+    .pipe(gulp.dest('./dist/'));
   gulp.src('./app/images/*.{png,jpg,gif}')
-    .pipe(gulp.dest("./dist/images"));
+    .pipe(gulp.dest('./dist/images'));
   gulp.src('./app/css/*.css')
-    .pipe(gulp.dest("./dist/assets/"));
+    .pipe(gulp.dest('./dist/assets/'));
+  gulp.src('./app/images/top_menu/*.jpg')
+    .pipe(gulp.dest('./dist/modules/mod_mljoostinamenu/menuimages'));
 });
 
 gulp.task('jade', function() {

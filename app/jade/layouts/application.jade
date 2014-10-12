@@ -3,16 +3,34 @@ html.no-js(lang='')
   head
     block title
       title Трубочистное дело
-    link(href='/assets/layout.css', type='text/css', media='all',
-         rel='stylesheet')
-    link(href='/assets/typography.css', type='text/css', media='all',
-         rel='stylesheet')
-    link(href='/assets/print.css', type='text/css', media='print',
-         rel='stylesheet')
-    link(href='/assets/styles.css', type='text/css', media='all',
-         rel='stylesheet')
-    meta(name='keywords',
-         content='прочистка дымоходов реконструкция печей дымоходы печи камины топки дымит печь камин труба трубочисты санкт-петербурга')
+    link(
+      href='/assets/layout.css',
+      type='text/css',
+      media='all',
+      rel='stylesheet'
+    )
+    link(
+      href='/assets/typography.css',
+      type='text/css',
+      media='all',
+      rel='stylesheet'
+    )
+    link(
+      href='/assets/print.css',
+      type='text/css',
+      media='print',
+      rel='stylesheet'
+    )
+    link(
+      href='/assets/styles.css',
+      type='text/css',
+      media='all',
+      rel='stylesheet'
+    )
+    meta(
+      name='keywords',
+      content='прочистка дымоходов реконструкция печей дымоходы печи камины топки дымит печь камин труба трубочисты санкт-петербурга'
+    )
     meta(name='description', content='Сажи нет')
     meta(name='MSSmartTagsPreventParsing', content='true')
     meta(http-equiv='X-UA-COMPATIBLE', content='IE=EmulateIE8')
@@ -27,6 +45,97 @@ html.no-js(lang='')
     | <![endif]-->
     #page
       .content
+        #mh
+          table(class='menutable' cellspacing='0' cellpadding='0' border='0')
+            tbody
+              tr
+                td
+                  a#active_menu.mainlevel(href='home', title='Главная')
+                    img(
+                      src='modules/mod_mljoostinamenu/menuimages/menu_over_01.jpg',
+                      name='ml_img_1_1',
+                      border='0',
+                      alt='Главная'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_2_1')",
+                    onmouseout="MlImageOff('ml_img_2_1')",
+                    href='technology',
+                    title='Технологии'
+                  )
+                    img(
+                      src='/modules/mod_mljoostinamenu/menuimages/menu_02.jpg',
+                      name='ml_img_2_1',
+                      border='0',
+                      alt='Технологии'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_3_1')",
+                    onmouseout="MlImageOff('ml_img_3_1')",
+                    href='objects',
+                    title='Объекты'
+                  )
+                    img(
+                      src='/modules/mod_mljoostinamenu/menuimages/menu_03.jpg',
+                      name='ml_img_3_1',
+                      border='0',
+                      alt='Объекты'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_4_1')",
+                    onmouseout="MlImageOff('ml_img_4_1')",
+                    href='pricelist',
+                    title='Услуги и цены'
+                  )
+                    img(
+                      src='/modules/mod_mljoostinamenu/menuimages/menu_04.jpg',
+                      name='ml_img_4_1',
+                      border='0',
+                      alt='Услуги и цены'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_5_1')",
+                    onmouseout="MlImageOff('ml_img_5_1')",
+                    href='guruhelp',
+                    title='Советы специалиста'
+                  )
+                    img(
+                      src='/modules/mod_mljoostinamenu/menuimages/menu_05.jpg',
+                      name='ml_img_5_1',
+                      border='0',
+                      alt='Советы специалиста'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_6_1')",
+                    onmouseout="MlImageOff('ml_img_6_1')",
+                    href='forum',
+                    title='Форум'
+                  )
+                    img(
+                      src='/modules/mod_mljoostinamenu/menuimages/menu_06.jpg',
+                      name='ml_img_6_1',
+                      border='0',
+                      alt='Форум'
+                    )
+                td
+                  a.mainlevel(
+                    onmouseover="MlImageOn('ml_img_7_1')",
+                    onmouseout="MlImageOff('ml_img_7_1')",
+                    href='contacts',
+                    title='Контакты'
+                  )
+                    img(
+                      src='modules/mod_mljoostinamenu/menuimages/menu_07.jpg',
+                      name='ml_img_7_1',
+                      border='0',
+                      alt='Контакты'
+                    )
+
         #content
           .content
             #maincont
@@ -51,3 +160,62 @@ html.no-js(lang='')
                     td
                     td
                     td
+
+    script(type='text/javascript').
+      function MlImageOn (imgname) {
+        document.images[imgname].src = onImgArray[imgname].src;
+      }
+
+      function MlImageOff (imgname) {
+        document.images[imgname].src = offImgArray[imgname].src;
+      }
+
+      var offImgArray = new Array();
+      var onImgArray = new Array();
+      var imagesPath = '/modules/mod_mljoostinamenu/menuimages/';
+
+      offImgArray['ml_img_1_1'] = new Image ();
+      offImgArray['ml_img_2_1'] = new Image ();
+      offImgArray['ml_img_3_1'] = new Image ();
+      offImgArray['ml_img_4_1'] = new Image ();
+      offImgArray['ml_img_5_1'] = new Image ();
+      offImgArray['ml_img_6_1'] = new Image ();
+      offImgArray['ml_img_7_1'] = new Image ();
+      offImgArray['ml_img_8_1'] = new Image ();
+      offImgArray['ml_img_9_1'] = new Image ();
+      offImgArray['ml_img_10_1'] = new Image ();
+      offImgArray['ml_img_11_1'] = new Image ();
+      offImgArray['ml_img_1_1'].src = imagesPath + 'menu_01.jpg';
+      offImgArray['ml_img_2_1'].src = imagesPath + 'menu_02.jpg';
+      offImgArray['ml_img_3_1'].src = imagesPath + 'menu_03.jpg';
+      offImgArray['ml_img_4_1'].src = imagesPath + 'menu_04.jpg';
+      offImgArray['ml_img_5_1'].src = imagesPath + 'menu_05.jpg';
+      offImgArray['ml_img_6_1'].src = imagesPath + 'menu_06.jpg';
+      offImgArray['ml_img_7_1'].src = imagesPath + 'menu_07.jpg';
+      offImgArray['ml_img_8_1'].src = imagesPath + '-1';
+      offImgArray['ml_img_9_1'].src = imagesPath + '-1';
+      offImgArray['ml_img_10_1'].src = imagesPath + '-1';
+      offImgArray['ml_img_11_1'].src = imagesPath + '-1';
+
+      onImgArray['ml_img_1_1'] = new Image ();
+      onImgArray['ml_img_2_1'] = new Image ();
+      onImgArray['ml_img_3_1'] = new Image ();
+      onImgArray['ml_img_4_1'] = new Image ();
+      onImgArray['ml_img_5_1'] = new Image ();
+      onImgArray['ml_img_6_1'] = new Image ();
+      onImgArray['ml_img_7_1'] = new Image ();
+      onImgArray['ml_img_8_1'] = new Image ();
+      onImgArray['ml_img_9_1'] = new Image ();
+      onImgArray['ml_img_10_1'] = new Image ();
+      onImgArray['ml_img_11_1'] = new Image ();
+      onImgArray['ml_img_1_1'].src = imagesPath + 'menu_over_01.jpg';
+      onImgArray['ml_img_2_1'].src = imagesPath + 'menu_over_02.jpg';
+      onImgArray['ml_img_3_1'].src = imagesPath + 'menu_over_03.jpg';
+      onImgArray['ml_img_4_1'].src = imagesPath + 'menu_over_04.jpg';
+      onImgArray['ml_img_5_1'].src = imagesPath + 'menu_over_05.jpg';
+      onImgArray['ml_img_6_1'].src = imagesPath + 'menu_over_06.jpg';
+      onImgArray['ml_img_7_1'].src = imagesPath + 'menu_over_07.jpg';
+      onImgArray['ml_img_8_1'].src = imagesPath + '-1';
+      onImgArray['ml_img_9_1'].src = imagesPath + '-1';
+      onImgArray['ml_img_10_1'].src = imagesPath + '-1';
+      onImgArray['ml_img_11_1'].src = imagesPath + '-1';
