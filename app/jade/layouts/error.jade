@@ -1,0 +1,63 @@
+doctype html
+html(lang='en')
+  head
+    block title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    style.
+      * {
+        line-height: 1.2;
+        margin: 0;
+      }
+      :link {
+        color: #e3b959;
+      }
+      :visited {
+        color: #f0874f;
+      }
+      html {
+        background-color: #666;
+        color: #ccc;
+        display: table;
+        font-family: sans-serif;
+        height: 100%;
+        text-align: center;
+        width: 100%;
+      }
+      body {
+        display: table-cell;
+        margin: 2em auto;
+        vertical-align: middle;
+      }
+      h1 {
+        color: #aaa;
+        font-size: 2.2em;
+        font-weight: 400;
+      }
+      p {
+        font-size: 1.2em;
+        margin: 0 auto;
+        width: 280px;
+      }
+      .suggestions {
+        bottom: 1em;
+        font-size: 0.8em;
+        margin-top: 0.4em;
+        position: absolute;
+        width: 100%;
+      }
+      @media only screen and (max-width: 280px) {
+        body, p {
+          width: 95%;
+        }
+        h1 {
+          font-size: 1.5em;
+          margin: 0 0 0.3em;
+        }
+      }
+  body
+    block content
+    p.suggestions
+      a(href='/') В начало
+      |  или&nbsp;
+      a(href='mailto:postmaster@sazhi.net') связаться с нами
+// IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx
