@@ -15,6 +15,7 @@
   "devDependencies": {
     "gulp": "latest",
     "gulp-concat": "latest",
+    "gulp-htmlmin": "latest",
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-minify-css": "latest",

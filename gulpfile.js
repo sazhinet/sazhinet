@@ -1,6 +1,7 @@
 // var del = require('del');
 var concat = require('gulp-concat');
 var gulp = require('gulp');
+var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var minifyCSS = require('gulp-minify-css');
@@ -47,6 +48,11 @@ gulp.task('jade', function() {
   gulp.src(paths.jade)
     .pipe(jade({
       locals: myJadeLocals
+    }))
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true
     }))
     .pipe(gulp.dest(paths.dist));
 });
