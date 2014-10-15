@@ -1,7 +1,9 @@
 // var del = require('del');
+var concat = require('gulp-concat');
 var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
+var minifyCSS = require('gulp-minify-css');
 
 var paths = {
   css: './app/css/*.css',
@@ -25,6 +27,8 @@ gulp.task('images', function() {
 
 gulp.task('css', function() {
   gulp.src(paths.css)
+    .pipe(concat('all.css'))
+    .pipe(minifyCSS({keepBreaks:true})) //until start using bootstrap
     .pipe(gulp.dest(paths.dist + '/assets/'));
 });
 

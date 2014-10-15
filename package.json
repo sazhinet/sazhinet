@@ -14,8 +14,10 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "latest",
+    "gulp-concat": "latest",
     "gulp-imagemin": "latest",
-    "gulp-jade": "latest"
+    "gulp-jade": "latest",
+    "gulp-minify-css": "latest"
   },
   "scripts": {
     "start": "gulp",
