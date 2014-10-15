@@ -3,32 +3,39 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 
+var paths = {
+  css: './app/css/*.css',
+  dist: './dist',
+  images: './app/images',
+  jade: './app/jade/*.jade'
+};
+
 gulp.task('images', function() {
-  gulp.src('./app/images/favicon.ico')
-    .pipe(gulp.dest('./dist/'));
+  gulp.src(paths.image + '/favicon.ico')
+    .pipe(gulp.dest(paths.dist));
 
-  gulp.src('./app/images/*.{png,jpg,gif}')
+  gulp.src(paths.image + '/*.{png,jpg,gif}')
     .pipe(imagemin())
-    .pipe(gulp.dest('./dist/images'));
+    .pipe(gulp.dest(paths.dist + '/images'));
 
-  gulp.src('./app/images/top_menu/*.jpg')
+  gulp.src(paths.image + '/top_menu/*.jpg')
     .pipe(imagemin())
-    .pipe(gulp.dest('./dist/modules/mod_mljoostinamenu/menuimages'));
+    .pipe(gulp.dest(paths.dist + '/modules/mod_mljoostinamenu/menuimages'));
 });
 
 gulp.task('css', function() {
-  gulp.src('./app/css/*.css')
-    .pipe(gulp.dest('./dist/assets/'));
+  gulp.src(paths.css)
+    .pipe(gulp.dest(paths.dist + '/assets/'));
 });
 
 gulp.task('jade', function() {
   var myJadeLocals = {};
 
-  gulp.src('./app/jade/*.jade')
+  gulp.src(paths.jade)
     .pipe(jade({
       locals: myJadeLocals
     }))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('default', ['jade', 'images', 'css']);
