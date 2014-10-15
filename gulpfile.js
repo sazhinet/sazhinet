@@ -11,14 +11,14 @@ var paths = {
 };
 
 gulp.task('images', function() {
-  gulp.src(paths.image + '/favicon.ico')
+  gulp.src(paths.images + '/favicon.ico')
     .pipe(gulp.dest(paths.dist));
 
-  gulp.src(paths.image + '/*.{png,jpg,gif}')
+  gulp.src(paths.images + '/*.{png,jpg,gif}')
     .pipe(imagemin())
     .pipe(gulp.dest(paths.dist + '/images'));
 
-  gulp.src(paths.image + '/top_menu/*.jpg')
+  gulp.src(paths.images + '/top_menu/*.jpg')
     .pipe(imagemin())
     .pipe(gulp.dest(paths.dist + '/modules/mod_mljoostinamenu/menuimages'));
 });
