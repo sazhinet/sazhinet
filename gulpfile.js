@@ -1,5 +1,5 @@
-// var del = require('del');
 var concat = require('gulp-concat');
+var del = require('del');
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
@@ -15,7 +15,11 @@ var paths = {
   js: './app/js/*.js'
 };
 
-gulp.task('images', function() {
+gulp.task('clean', function(cb) {
+  del([paths.dist], cb);
+});
+
+gulp.task('images', ['clean'], function() {
   gulp.src(paths.images + '/favicon.ico')
     .pipe(gulp.dest(paths.dist));
 
@@ -28,21 +32,21 @@ gulp.task('images', function() {
     .pipe(gulp.dest(paths.dist + '/modules/mod_mljoostinamenu/menuimages'));
 });
 
-gulp.task('css', function() {
+gulp.task('css', ['clean'], function() {
   gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
     .pipe(concat('all.min.css'))
     .pipe(gulp.dest(paths.dist + '/assets/'));
 });
 
-gulp.task('js', function() {
+gulp.task('js', ['clean'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat('all.min.js'))
     .pipe(gulp.dest(paths.dist + '/assets/'));
 });
 
-gulp.task('jade', function() {
+gulp.task('jade', ['clean'], function() {
   var myJadeLocals = {};
 
   gulp.src(paths.jade)

@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "del": "latest",
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-htmlmin": "latest",
