@@ -15,7 +15,7 @@ var paths = {
   dist: './dist',
   favicon: './app/images/favicon.ico',
   images: './app/images/**/*.{png,jpg,gif}',
-  jade: './app/jade/*.jade',
+  jade: './app/jade/**/*.jade',
   js: './app/js/*.js'
 };
 
@@ -52,7 +52,7 @@ gulp.task('js', ['clean'], function() {
 gulp.task('jade', ['clean'], function() {
   var myJadeLocals = {};
 
-  gulp.src(paths.jade)
+  gulp.src([paths.jade, '!**/layouts/**/*'])
     .pipe(jade({
       locals: myJadeLocals
     }))
@@ -66,7 +66,7 @@ gulp.task('jade', ['clean'], function() {
 
 gulp.task('watch', function() {
   gulp.watch([
-    './app/jade/**/*.jade',
+    paths.jade,
     paths.favicon,
     paths.images,
     paths.css,
