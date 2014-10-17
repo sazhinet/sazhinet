@@ -1,4 +1,5 @@
 var concat = require('gulp-concat');
+var connect = require('gulp-connect');
 var del = require('del');
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
@@ -59,6 +60,12 @@ gulp.task('jade', ['clean'], function() {
       minifyJS: true
     }))
     .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('connect', ['default'], function() {
+  connect.server({
+    root: paths.dist
+  });
 });
 
 gulp.task('default', ['jade', 'images', 'css', 'js']);

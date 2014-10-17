@@ -18,6 +18,8 @@ nvm use 0 && cd /path/to/sazhinet && npm install
 
 ### Run
 
+Start server on 8080 port
+
 ````bash
 npm start
 ````
