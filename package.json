@@ -17,6 +17,7 @@
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-connect": "latest",
+    "gulp-flatten": "latest",
     "gulp-htmlmin": "latest",
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",

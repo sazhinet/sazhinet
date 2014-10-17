@@ -1,6 +1,7 @@
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var del = require('del');
+var flatten = require('gulp-flatten');
 var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
@@ -27,10 +28,8 @@ gulp.task('favicon', ['clean'], function() {
 });
 
 gulp.task('images', ['clean'], function() {
-  gulp.src([
-    paths.images + '/*.{png,jpg,gif}',
-    paths.images + '/menu/*.jpg'
-  ])
+  gulp.src(paths.images + '/**/*.{png,jpg,gif}')
+    .pipe(flatten())
     .pipe(imagemin())
     .pipe(gulp.dest(paths.assets));
 });
