@@ -21,10 +21,12 @@ gulp.task('clean', function(cb) {
   del([paths.dist], cb);
 });
 
-gulp.task('images', ['clean'], function() {
+gulp.task('favicon', ['clean'], function() {
   gulp.src(paths.images + '/favicon.ico')
     .pipe(gulp.dest(paths.dist));
+});
 
+gulp.task('images', ['clean'], function() {
   gulp.src([
     paths.images + '/*.{png,jpg,gif}',
     paths.images + '/menu/*.jpg'
@@ -68,4 +70,4 @@ gulp.task('connect', ['default'], function() {
   });
 });
 
-gulp.task('default', ['jade', 'images', 'css', 'js']);
+gulp.task('default', ['jade', 'favicon', 'images', 'css', 'js']);
