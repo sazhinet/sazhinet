@@ -8,7 +8,7 @@ function MlImageOff (imgname) {
 
 var offImgArray = new Array();
 var onImgArray = new Array();
-var imagesPath = '/modules/mod_mljoostinamenu/menuimages/';
+var imagesPath = '/images/';
 
 offImgArray['ml_img_1_1'] = new Image ();
 offImgArray['ml_img_2_1'] = new Image ();

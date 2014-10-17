@@ -24,13 +24,12 @@ gulp.task('images', ['clean'], function() {
   gulp.src(paths.images + '/favicon.ico')
     .pipe(gulp.dest(paths.dist));
 
-  gulp.src(paths.images + '/*.{png,jpg,gif}')
+  gulp.src([
+    paths.images + '/*.{png,jpg,gif}',
+    paths.images + '/menu/*.jpg'
+  ])
     .pipe(imagemin())
     .pipe(gulp.dest(paths.dist + '/images'));
-
-  gulp.src(paths.images + '/top_menu/*.jpg')
-    .pipe(imagemin())
-    .pipe(gulp.dest(paths.dist + '/modules/mod_mljoostinamenu/menuimages'));
 });
 
 gulp.task('css', ['clean'], function() {
