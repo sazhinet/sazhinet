@@ -13,7 +13,7 @@
 /* lists */
 .content ul, .content ol{margin-left:20px;margin-bottom:12px!important;}
 .content ol ol{margin-left:30px;}
-.content ul > li{list-style-image:url('/images/list.gif');list-style-position:outside;}
+.content ul > li{list-style-image:url('/assets/list.gif');list-style-position:outside;}
 .content ol > li{list-style-image:none;list-style-type:decimal;}
 .content dt{font-weight:bold;}
 
@@ -59,7 +59,7 @@
 
 .content a{text-decoration:underline;color:#faf0e6;}
 .content a:hover{text-decoration:none;}
-.content a[target="_blank"], .content a.external{background:url("/images/external-link.gif")no-repeat 100% 50%;padding-right:13px;}
+.content a[target="_blank"], .content a.external{background:url("/assets/external-link.gif")no-repeat 100% 50%;padding-right:13px;}
 
 /* code */
 .content pre{border:1px dashed #aaa;line-height:20px;padding:5px;background:#eee;margin:0;color:#c33;}

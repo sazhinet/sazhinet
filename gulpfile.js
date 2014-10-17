@@ -9,6 +9,7 @@ var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 
 var paths = {
+  assets: './dist/assets',
   css: './app/css/*.css',
   dist: './dist',
   images: './app/images',
@@ -29,21 +30,21 @@ gulp.task('images', ['clean'], function() {
     paths.images + '/menu/*.jpg'
   ])
     .pipe(imagemin())
-    .pipe(gulp.dest(paths.dist + '/images'));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('css', ['clean'], function() {
   gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
     .pipe(concat('all.min.css'))
-    .pipe(gulp.dest(paths.dist + '/assets/'));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('js', ['clean'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat('all.min.js'))
-    .pipe(gulp.dest(paths.dist + '/assets/'));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('jade', ['clean'], function() {
