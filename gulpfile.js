@@ -17,8 +17,8 @@ var paths = {
   js: './app/js/*.js'
 };
 
-gulp.task('clean', function(cb) {
-  del([paths.dist], cb);
+gulp.task('clean', function(callback) {
+  del([paths.dist], callback);
 });
 
 gulp.task('favicon', ['clean'], function() {
