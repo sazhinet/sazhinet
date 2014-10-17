@@ -13,7 +13,8 @@ var paths = {
   assets: './dist/assets',
   css: './app/css/*.css',
   dist: './dist',
-  images: './app/images',
+  favicon: './app/images/favicon.ico',
+  images: './app/images/**/*.{png,jpg,gif}',
   jade: './app/jade/*.jade',
   js: './app/js/*.js'
 };
@@ -23,12 +24,12 @@ gulp.task('clean', function(callback) {
 });
 
 gulp.task('favicon', ['clean'], function() {
-  gulp.src(paths.images + '/favicon.ico')
+  gulp.src(paths.favicon)
     .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('images', ['clean'], function() {
-  gulp.src(paths.images + '/**/*.{png,jpg,gif}')
+  gulp.src(paths.images)
     .pipe(flatten())
     .pipe(imagemin())
     .pipe(gulp.dest(paths.assets));
@@ -63,7 +64,17 @@ gulp.task('jade', ['clean'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('connect', ['default'], function() {
+gulp.task('watch', function() {
+  gulp.watch([
+    './app/jade/**/*.jade',
+    paths.favicon,
+    paths.images,
+    paths.css,
+    paths.js
+  ], ['default']);
+});
+
+gulp.task('connect', ['watch', 'default'], function() {
   connect.server({
     root: paths.dist
   });
