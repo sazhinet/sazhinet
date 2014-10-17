@@ -70,4 +70,6 @@ gulp.task('connect', ['default'], function() {
   });
 });
 
+gulp.task('test', ['default']);
+
 gulp.task('default', ['jade', 'favicon', 'images', 'css', 'js']);
