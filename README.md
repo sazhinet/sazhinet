@@ -12,13 +12,25 @@ Development
 
 ### Install
 
+If node.js not installed get
+[nvm](https://github.com/creationix/nvm#installation)
+(node version manager)
+
+Then:
+
 ````bash
-nvm use 0 && cd /path/to/sazhinet && npm install
+nvm install 0 && nvm use 0
+````
+
+And then:
+
+````bash
+cd /path/to/sazhinet && npm install
 ````
 
 ### Run
 
-Start server on 8080 port
+Start server on port 8080
 
 ````bash
 npm start
@@ -27,7 +39,7 @@ npm start
 ### Deploy
 
 ````bash
-npm test && `npm bin`/divshot push && production
+npm test
 rsync --checksum \
       --human-readable \
       --archive \
