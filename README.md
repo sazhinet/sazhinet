@@ -12,17 +12,17 @@ Development
 
 ### Install
 
-If node.js not installed get
+If node.js is not installed get
 [nvm](https://github.com/creationix/nvm#installation)
 (node version manager)
 
-Then:
+Then
 
 ````bash
 nvm install 0 && nvm use 0
 ````
 
-And then:
+And then
 
 ````bash
 cd /path/to/sazhinet && npm install
