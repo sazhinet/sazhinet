@@ -1,3 +1,4 @@
+var commander = require('commander');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var del = require('del');
@@ -8,6 +9,10 @@ var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
+
+commander
+  .option('-p, --path [path]', 'Rsync destenation path', '/var/www/sazhinet')
+  .parse(process.argv);
 
 var paths = {
   assets: './dist/assets',
