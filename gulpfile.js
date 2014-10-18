@@ -11,8 +11,11 @@ var minifyCSS = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 
 commander
-  .option('-p, --path [path]', 'Rsync destenation path', '/var/www/sazhinet')
-  .parse(process.argv);
+  .option(
+    '-p, --deploy-path [path]',
+    'Rsync destination path',
+    '/var/www/sazhinet'
+  ).parse(process.argv);
 
 var paths = {
   assets: './dist/assets',
