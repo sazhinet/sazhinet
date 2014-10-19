@@ -39,16 +39,5 @@ npm start
 ### Deploy
 
 ````bash
-npm test
-rsync --checksum \
-      --human-readable \
-      --archive \
-      --verbose \
-      --compress \
-      --partial \
-      --progress \
-      --stats \
-      --delete \
-      --skip-compress=jpg,gif,png,ico \
-      ./dist/* example.com:/path/to/sazhinet
+npm run deploy --destination=example.com:/path/to/sazhinet
 ````

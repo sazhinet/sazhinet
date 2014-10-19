@@ -23,11 +23,13 @@
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-minify-css": "latest",
-    "gulp-uglify": "latest"
+    "gulp-uglify": "latest",
+    "rsyncwrapper": "latest"
   },
   "scripts": {
+    "deploy": "gulp rsync",
     "start": "gulp connect",
-    "test": "gulp test"
+    "test": "gulp default"
   },
   "engines": {
     "node": "latest"

@@ -8,13 +8,15 @@ var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var minifyCSS = require('gulp-minify-css');
+var package = require('./package.json');
+var rsync = require('rsyncwrapper').rsync;
 var uglify = require('gulp-uglify');
 
 commander
   .option(
-    '-p, --deploy-path [path]',
+    '-d, --destination [path]',
     'Rsync destination path',
-    '/var/www/sazhinet'
+    '/var/www/' + package.name
   ).parse(process.argv);
 
 var paths = {
@@ -27,8 +29,8 @@ var paths = {
   js: './app/js/*.js'
 };
 
-gulp.task('clean', function(callback) {
-  del([paths.dist], callback);
+gulp.task('clean', function() {
+  del([paths.dist]);
 });
 
 gulp.task('favicon', ['clean'], function() {
@@ -46,14 +48,14 @@ gulp.task('images', ['clean'], function() {
 gulp.task('css', ['clean'], function() {
   gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
-    .pipe(concat('all.min.css'))
+    .pipe(concat(package.name + '.min.css'))
     .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('js', ['clean'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
-    .pipe(concat('all.min.js'))
+    .pipe(concat(package.name + '.min.js'))
     .pipe(gulp.dest(paths.assets));
 });
 
@@ -85,6 +87,32 @@ gulp.task('watch', function() {
 gulp.task('connect', ['watch', 'default'], function() {
   connect.server({
     root: paths.dist
+  });
+});
+
+gulp.task('rsync', ['default'], function() {
+  rsync({
+    src: paths.dist + '/*',
+    dest: commander.destination,
+    args: [
+      '--archive',
+      '--checksum',
+      '--compress',
+      '--delete',
+      '--human-readable',
+      '--partial',
+      '--progress',
+      '--skip-compress=jpg,gif,png,ico',
+      '--stats',
+      '--verbose',
+    ]
+  }, function (error, stdout, stderr, cmd) {
+    console.log(cmd);
+    if (error) {
+      console.log(error);
+      console.log(stderr);
+    }
+    console.log(stdout);
   });
 });
 
