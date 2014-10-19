@@ -1,9 +1,9 @@
-var commander = require('commander');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var del = require('del');
 var flatten = require('gulp-flatten');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
@@ -12,13 +12,6 @@ var package = require('./package.json');
 var rsync = require('rsyncwrapper').rsync;
 var uglify = require('gulp-uglify');
 
-commander
-  .option(
-    '-d, --destination [path]',
-    'Rsync destination path',
-    '/var/www/' + package.name
-  ).parse(process.argv);
-
 var paths = {
   assets: './dist/assets',
   css: './app/css/*.css',
@@ -26,7 +19,8 @@ var paths = {
   favicon: './app/images/favicon.ico',
   images: './app/images/**/*.{png,jpg,gif}',
   jade: './app/jade/**/*.jade',
-  js: './app/js/*.js'
+  js: './app/js/*.js',
+  rsync: {destination: gutil.env.destination}
 };
 
 gulp.task('clean', function() {
@@ -93,7 +87,7 @@ gulp.task('connect', ['watch', 'default'], function() {
 gulp.task('rsync', ['default'], function() {
   rsync({
     src: paths.dist + '/*',
-    dest: commander.destination,
+    dest: paths.rsync.destination,
     args: [
       '--archive',
       '--checksum',

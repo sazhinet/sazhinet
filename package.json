@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "commander": "latest",
     "del": "latest",
     "gulp": "latest",
     "gulp-concat": "latest",
@@ -24,10 +23,10 @@
     "gulp-jade": "latest",
     "gulp-minify-css": "latest",
     "gulp-uglify": "latest",
+    "gulp-util": "latest",
     "rsyncwrapper": "latest"
   },
   "scripts": {
-    "deploy": "gulp rsync",
     "start": "gulp connect",
     "test": "gulp default"
   },

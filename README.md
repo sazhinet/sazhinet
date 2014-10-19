@@ -39,5 +39,5 @@ npm start
 ### Deploy
 
 ````bash
-npm run deploy --destination=example.com:/path/to/sazhinet
+`npm bin`/gulp rsync --destination=example.com:/path/to/sazhinet
 ````
