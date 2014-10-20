@@ -25,7 +25,8 @@ var paths = {
   js: 'app/js/*.js',
   manifestNames: {
     css: 'css-manifest.json',
-    images: 'images-manifest.json'
+    images: 'images-manifest.json',
+    js: 'js-manifest.json'
   },
   manifestPaths: {},
   rsync: {destination: gutil.env.destination}
@@ -87,14 +88,17 @@ gulp.task('css', ['clean', 'images'], function() {
 });
 
 gulp.task('js', ['clean', 'images'], function() {
-  gulp.src(paths.js)
+  return gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat(package.name + '.min.js'))
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
-    .pipe(gulp.dest(paths.assets));
+    .pipe(revisioning())
+    .pipe(gulp.dest(paths.assets))
+    .pipe(revisioning.manifest({path: paths.manifestNames.js}))
+    .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', ['clean', 'images', 'css'], function() {
+gulp.task('jade', ['clean', 'images', 'css', 'js'], function() {
   var myJadeLocals = {};
 
   gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -108,6 +112,7 @@ gulp.task('jade', ['clean', 'images', 'css'], function() {
     }))
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(applyRevisioningManifest(paths.manifestPaths.css))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.js))
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -155,4 +160,4 @@ gulp.task('rsync', ['default'], function() {
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['jade', 'favicon', 'images', 'css', 'js']);
+gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'css', 'js']);
