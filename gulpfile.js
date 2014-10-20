@@ -11,7 +11,7 @@ var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var minifyCSS = require('gulp-minify-css');
 var package = require('./package.json');
-var rev = require('gulp-rev');
+var revisioning = require('gulp-rev');
 var rsync = require('rsyncwrapper').rsync;
 var uglify = require('gulp-uglify');
 
@@ -24,7 +24,7 @@ var paths = {
   jade: 'app/jade/**/*.jade',
   js: 'app/js/*.js',
   manifests: {
-    images: 'rev-manifest.json'
+    images: 'revisioning-manifest.json'
   },
   rsync: {destination: gutil.env.destination}
 };
@@ -34,7 +34,7 @@ Object.getOwnPropertyNames(paths.manifests).map(function(property) {
   paths.manifests[property] = manifestsDir + paths.manifests[property];
 });
 
-function applyManifest(manifestPath) {
+function applyRevisioningManifest(manifestPath) {
   var manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 
   var doReplace = function(file, callback) {
@@ -67,9 +67,9 @@ gulp.task('images', ['clean'], function() {
   return gulp.src(paths.images)
     .pipe(flatten())
     .pipe(imagemin())
-    .pipe(rev())
+    .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
-    .pipe(rev.manifest())
+    .pipe(revisioning.manifest({path: 'revisioning-manifest.json'}))
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -77,7 +77,7 @@ gulp.task('css', ['clean', 'images'], function() {
   gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
     .pipe(concat(package.name + '.min.css'))
-    .pipe(applyManifest(paths.manifests.images))
+    .pipe(applyRevisioningManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.assets));
 });
 
@@ -85,7 +85,7 @@ gulp.task('js', ['clean', 'images'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat(package.name + '.min.js'))
-    .pipe(applyManifest(paths.manifests.images))
+    .pipe(applyRevisioningManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.assets));
 });
 
@@ -101,7 +101,7 @@ gulp.task('jade', ['clean', 'images'], function() {
       minifyCSS: true,
       minifyJS: true
     }))
-    .pipe(applyManifest(paths.manifests.images))
+    .pipe(applyRevisioningManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.dist));
 });
 
