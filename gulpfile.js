@@ -23,15 +23,17 @@ var paths = {
   images: 'app/images/**/*.{png,jpg,gif}',
   jade: 'app/jade/**/*.jade',
   js: 'app/js/*.js',
-  manifests: {
-    images: 'revisioning-manifest.json'
+  manifestNames: {
+    css: 'css-manifest.json',
+    images: 'images-manifest.json'
   },
+  manifestPaths: {},
   rsync: {destination: gutil.env.destination}
 };
 
 var manifestsDir = __dirname + '/' + paths.dist + '/';
-Object.getOwnPropertyNames(paths.manifests).map(function(property) {
-  paths.manifests[property] = manifestsDir + paths.manifests[property];
+Object.getOwnPropertyNames(paths.manifestNames).map(function(property) {
+  paths.manifestPaths[property] = manifestsDir + paths.manifestNames[property];
 });
 
 function applyRevisioningManifest(manifestPath) {
@@ -69,27 +71,30 @@ gulp.task('images', ['clean'], function() {
     .pipe(imagemin())
     .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
-    .pipe(revisioning.manifest({path: 'revisioning-manifest.json'}))
+    .pipe(revisioning.manifest({path: paths.manifestNames.images}))
     .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('css', ['clean', 'images'], function() {
-  gulp.src(paths.css)
+  return gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
     .pipe(concat(package.name + '.min.css'))
-    .pipe(applyRevisioningManifest(paths.manifests.images))
-    .pipe(gulp.dest(paths.assets));
+    .pipe(applyRevisioningManifest(paths.manifestPaths.images))
+    .pipe(revisioning())
+    .pipe(gulp.dest(paths.assets))
+    .pipe(revisioning.manifest({path: paths.manifestNames.css}))
+    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('js', ['clean', 'images'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat(package.name + '.min.js'))
-    .pipe(applyRevisioningManifest(paths.manifests.images))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(gulp.dest(paths.assets));
 });
 
-gulp.task('jade', ['clean', 'images'], function() {
+gulp.task('jade', ['clean', 'images', 'css'], function() {
   var myJadeLocals = {};
 
   gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -101,7 +106,8 @@ gulp.task('jade', ['clean', 'images'], function() {
       minifyCSS: true,
       minifyJS: true
     }))
-    .pipe(applyRevisioningManifest(paths.manifests.images))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.images))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.css))
     .pipe(gulp.dest(paths.dist));
 });
 
