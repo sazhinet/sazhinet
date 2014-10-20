@@ -62,7 +62,7 @@ gulp.task('clean', function(callback) {
 });
 
 gulp.task('favicon', ['clean'], function() {
-  gulp.src(paths.favicon)
+  return gulp.src(paths.favicon)
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -101,7 +101,7 @@ gulp.task('js', ['clean', 'images'], function() {
 gulp.task('jade', ['clean', 'images', 'css', 'js'], function() {
   var myJadeLocals = {};
 
-  gulp.src([paths.jade, '!**/layouts/**/*'])
+  return gulp.src([paths.jade, '!**/layouts/**/*'])
     .pipe(jade({
       locals: myJadeLocals
     }))
@@ -132,31 +132,34 @@ gulp.task('connect', ['watch', 'default'], function() {
   });
 });
 
-gulp.task('rsync', ['default'], function() {
-  rsync({
-    src: paths.dist + '/*',
-    dest: paths.rsync.destination,
-    args: [
-      '--archive',
-      '--checksum',
-      '--compress',
-      '--delete',
-      '--human-readable',
-      '--partial',
-      '--progress',
-      '--skip-compress=jpg,gif,png,ico',
-      '--stats',
-      '--verbose',
-    ]
-  }, function (error, stdout, stderr, cmd) {
-    console.log(cmd);
-    if (error) {
-      console.log(error);
-      console.log(stderr);
-    }
-    console.log(stdout);
+gulp.task(
+  'rsync',
+  ['clean', 'jade', 'favicon', 'images', 'css', 'js'],
+  function() {
+    rsync({
+      src: paths.dist + '/*',
+      dest: paths.rsync.destination,
+      args: [
+        '--archive',
+        '--checksum',
+        '--compress',
+        '--delete',
+        '--human-readable',
+        '--partial',
+        '--progress',
+        '--skip-compress=jpg,gif,png,ico',
+        '--stats',
+        '--verbose',
+      ]
+    }, function (error, stdout, stderr, cmd) {
+      console.log(cmd);
+      if (error) {
+        console.log(error);
+        console.log(stderr);
+      }
+      console.log(stdout);
+    });
   });
-});
 
 gulp.task('test', ['default']);
 
