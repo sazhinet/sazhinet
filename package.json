@@ -22,6 +22,8 @@
     "gulp-imagemin": "latest",
     "gulp-jade": "latest",
     "gulp-minify-css": "latest",
+    "event-stream": "latest",
+    "gulp-rev": "latest",
     "gulp-uglify": "latest",
     "gulp-util": "latest",
     "rsyncwrapper": "latest"

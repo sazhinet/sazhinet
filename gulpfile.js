@@ -1,7 +1,9 @@
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 var del = require('del');
+var es = require('event-stream');
 var flatten = require('gulp-flatten');
+var fs = require('fs');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
@@ -9,22 +11,51 @@ var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
 var minifyCSS = require('gulp-minify-css');
 var package = require('./package.json');
+var rev = require('gulp-rev');
 var rsync = require('rsyncwrapper').rsync;
 var uglify = require('gulp-uglify');
 
 var paths = {
-  assets: './dist/assets',
-  css: './app/css/*.css',
-  dist: './dist',
-  favicon: './app/images/favicon.ico',
-  images: './app/images/**/*.{png,jpg,gif}',
-  jade: './app/jade/**/*.jade',
-  js: './app/js/*.js',
+  assets: 'dist/assets',
+  css: 'app/css/*.css',
+  dist: 'dist',
+  favicon: 'app/images/favicon.ico',
+  images: 'app/images/**/*.{png,jpg,gif}',
+  jade: 'app/jade/**/*.jade',
+  js: 'app/js/*.js',
+  manifests: {
+    images: 'rev-manifest.json'
+  },
   rsync: {destination: gutil.env.destination}
 };
 
-gulp.task('clean', function() {
-  del([paths.dist]);
+var manifestsDir = __dirname + '/' + paths.dist + '/';
+Object.getOwnPropertyNames(paths.manifests).map(function(property) {
+  paths.manifests[property] = manifestsDir + paths.manifests[property];
+});
+
+function applyManifest(manifestPath) {
+  var manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+  var doReplace = function(file, callback) {
+    if (file.contents instanceof Buffer) {
+      Object.getOwnPropertyNames(manifest)
+        .forEach(function(property) {
+          var search = property;
+          var replace = manifest[property];
+          file.contents = new Buffer(
+            String(file.contents).split(search).join(replace)
+          );
+        });
+    }
+    callback(null, file);
+  };
+
+  return es.map(doReplace);
+};
+
+gulp.task('clean', function(callback) {
+  del([paths.dist], callback);
 });
 
 gulp.task('favicon', ['clean'], function() {
@@ -33,27 +64,32 @@ gulp.task('favicon', ['clean'], function() {
 });
 
 gulp.task('images', ['clean'], function() {
-  gulp.src(paths.images)
+  return gulp.src(paths.images)
     .pipe(flatten())
     .pipe(imagemin())
-    .pipe(gulp.dest(paths.assets));
+    .pipe(rev())
+    .pipe(gulp.dest(paths.assets))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('css', ['clean'], function() {
+gulp.task('css', ['clean', 'images'], function() {
   gulp.src(paths.css)
     .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
     .pipe(concat(package.name + '.min.css'))
+    .pipe(applyManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.assets));
 });
 
-gulp.task('js', ['clean'], function() {
+gulp.task('js', ['clean', 'images'], function() {
   gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat(package.name + '.min.js'))
+    .pipe(applyManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.assets));
 });
 
-gulp.task('jade', ['clean'], function() {
+gulp.task('jade', ['clean', 'images'], function() {
   var myJadeLocals = {};
 
   gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -65,6 +101,7 @@ gulp.task('jade', ['clean'], function() {
       minifyCSS: true,
       minifyJS: true
     }))
+    .pipe(applyManifest(paths.manifests.images))
     .pipe(gulp.dest(paths.dist));
 });
 
