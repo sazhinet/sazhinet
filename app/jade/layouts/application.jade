@@ -30,28 +30,20 @@ html(xmlns='http://www.w3.org/1999/xhtml')
         #mh
           table(cellspacing='0' cellpadding='0' border='0')
             tbody
-              tr
+              tr.top-menu
                 td
-                  a(
-                    onmouseover="MlImageOn('ml_img_1_1')"
-                    onmouseout="MlImageOff('ml_img_1_1')"
+                  a#menu_home(
                     href='/'
                     title='Главная'
+                    style='width: 160px; height: 105px;'
                   )
-                    img(
-                      src='/assets/home.jpg'
-                      name='ml_img_1_1'
-                      border='0'
-                      width='160'
-                      height='105'
-                      alt='Главная'
-                    )
                 td
-                  a(
+                  a#menu_technology(
                     onmouseover="MlImageOn('ml_img_2_1')"
                     onmouseout="MlImageOff('ml_img_2_1')"
                     href='/technology'
                     title='Технологии'
+                    style='width: 137px; height: 105px;'
                   )
                     img(
                       src='/assets/technology.jpg'
@@ -62,7 +54,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       alt='Технологии'
                     )
                 td
-                  a(
+                  a#menu_object(
                     onmouseover="MlImageOn('ml_img_3_1')"
                     onmouseout="MlImageOff('ml_img_3_1')"
                     href='/objects'
@@ -77,7 +69,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       alt='Объекты'
                     )
                 td
-                  a(
+                  a#menu_pricelist(
                     onmouseover="MlImageOn('ml_img_4_1')"
                     onmouseout="MlImageOff('ml_img_4_1')"
                     href='/pricelist'
@@ -92,7 +84,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       alt='Услуги и цены'
                     )
                 td
-                  a(
+                  a#menu_guruhelp(
                     onmouseover="MlImageOn('ml_img_5_1')"
                     onmouseout="MlImageOff('ml_img_5_1')"
                     href='/guruhelp'
@@ -107,7 +99,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       alt='Советы специалиста'
                     )
                 td
-                  a(
+                  a#menu_forum(
                     onmouseover="MlImageOn('ml_img_6_1')"
                     onmouseout="MlImageOff('ml_img_6_1')"
                     href='/forum'
@@ -122,7 +114,7 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                       alt='Форум'
                     )
                 td
-                  a(
+                  a#menu_contacts(
                     onmouseover="MlImageOn('ml_img_7_1')"
                     onmouseout="MlImageOff('ml_img_7_1')"
                     href='/contacts'

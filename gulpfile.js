@@ -9,10 +9,13 @@ var gutil = require('gulp-util');
 var htmlmin = require('gulp-htmlmin');
 var imagemin = require('gulp-imagemin');
 var jade = require('gulp-jade');
+var less = require('gulp-less');
+var merge = require('merge-stream');
 var minifyCSS = require('gulp-minify-css');
 var package = require('./package.json');
 var revisioning = require('gulp-rev');
 var rsync = require('rsyncwrapper').rsync;
+var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 
 var paths = {
@@ -23,6 +26,7 @@ var paths = {
   images: 'app/images/**/*.{png,jpg,gif}',
   jade: 'app/jade/**/*.jade',
   js: 'app/js/*.js',
+  less: 'app/less/*.less',
   manifestNames: {
     css: 'css-manifest.json',
     images: 'images-manifest.json',
@@ -78,10 +82,16 @@ gulp.task('images', ['clean'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('css', ['clean', 'images'], function() {
-  return gulp.src(paths.css)
-    .pipe(minifyCSS({keepBreaks:true})) //keepBreaks until start using bootstrap
+gulp.task('stylesheets', ['clean', 'images'], function() {
+  return merge(
+    gulp.src(paths.less)
+      .pipe(sourcemaps.init())
+      .pipe(less())
+      .pipe(sourcemaps.write()) ,
+    gulp.src(paths.css)
+  )
     .pipe(concat(package.name + '.min.css'))
+    .pipe(minifyCSS())
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
@@ -108,7 +118,7 @@ gulp.task('swf', ['clean'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', ['clean', 'images', 'css', 'js', 'swf'], function() {
+gulp.task('jade', ['clean', 'images', 'stylesheets', 'js', 'swf'], function() {
   var myJadeLocals = {};
 
   return gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -129,11 +139,12 @@ gulp.task('jade', ['clean', 'images', 'css', 'js', 'swf'], function() {
 
 gulp.task('watch', function() {
   gulp.watch([
-    paths.jade,
+    paths.css,
     paths.favicon,
     paths.images,
-    paths.css,
-    paths.js
+    paths.jade,
+    paths.js,
+    paths.less
   ], ['default']);
 });
 
@@ -145,7 +156,7 @@ gulp.task('connect', ['watch', 'default'], function() {
 
 gulp.task(
   'rsync',
-  ['clean', 'jade', 'favicon', 'images', 'css', 'js', 'swf'],
+  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'js', 'swf'],
   function() {
     rsync({
       src: paths.dist + '/*',
@@ -174,4 +185,4 @@ gulp.task(
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'css', 'js', 'swf']);
+gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'js', 'swf']);
