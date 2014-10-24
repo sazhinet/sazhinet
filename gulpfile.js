@@ -28,10 +28,10 @@ var paths = {
   js: 'app/js/*.js',
   less: 'app/less/*.less',
   manifestNames: {
-    css: 'css-manifest.json',
+    adobeFlash: 'adobe-flash-manifest.json',
     images: 'images-manifest.json',
-    js: 'js-manifest.json',
-    swf: 'swf-manifest.json'
+    javascripts: 'javascripts-manifest.json',
+    stylesheets: 'stylesheets-manifest.json'
   },
   manifestPaths: {},
   rsync: {destination: gutil.env.destination},
@@ -95,30 +95,30 @@ gulp.task('stylesheets', ['clean', 'images'], function() {
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
-    .pipe(revisioning.manifest({path: paths.manifestNames.css}))
+    .pipe(revisioning.manifest({path: paths.manifestNames.stylesheets}))
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('js', ['clean', 'images'], function() {
+gulp.task('javascripts', ['clean', 'images'], function() {
   return gulp.src(paths.js)
     .pipe(uglify())
     .pipe(concat(package.name + '.min.js'))
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
-    .pipe(revisioning.manifest({path: paths.manifestNames.js}))
+    .pipe(revisioning.manifest({path: paths.manifestNames.javascripts}))
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('swf', ['clean'], function() {
+gulp.task('adobeFlash', ['clean'], function() {
   return gulp.src(paths.swf)
     .pipe(revisioning())
     .pipe(gulp.dest(paths.assets))
-    .pipe(revisioning.manifest({path: paths.manifestNames.swf}))
+    .pipe(revisioning.manifest({path: paths.manifestNames.adobeFlash}))
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', ['clean', 'images', 'stylesheets', 'js', 'swf'], function() {
+gulp.task('jade', ['clean', 'images', 'stylesheets', 'javascripts', 'adobeFlash'], function() {
   var myJadeLocals = {};
 
   return gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -131,9 +131,9 @@ gulp.task('jade', ['clean', 'images', 'stylesheets', 'js', 'swf'], function() {
       minifyJS: true
     }))
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
-    .pipe(applyRevisioningManifest(paths.manifestPaths.css))
-    .pipe(applyRevisioningManifest(paths.manifestPaths.js))
-    .pipe(applyRevisioningManifest(paths.manifestPaths.swf))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.stylesheets))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.javascripts))
+    .pipe(applyRevisioningManifest(paths.manifestPaths.adobeFlash))
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -156,7 +156,7 @@ gulp.task('connect', ['watch', 'default'], function() {
 
 gulp.task(
   'rsync',
-  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'js', 'swf'],
+  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'javascripts', 'adobeFlash'],
   function() {
     rsync({
       src: paths.dist + '/*',
@@ -185,4 +185,4 @@ gulp.task(
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'js', 'swf']);
+gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'javascripts', 'adobeFlash']);
