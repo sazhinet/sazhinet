@@ -139,35 +139,32 @@ gulp.task('connect', ['watch', 'default'], function() {
   });
 });
 
-gulp.task(
-  'rsync',
-  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'adobeFlash'],
-  function() {
-    rsync({
-      src: paths.dist + '/*',
-      dest: paths.rsync.destination,
-      args: [
-        '--archive',
-        '--checksum',
-        '--compress',
-        '--delete',
-        '--human-readable',
-        '--partial',
-        '--progress',
-        '--skip-compress=jpg,gif,png,ico',
-        '--stats',
-        '--verbose',
-      ]
-    }, function (error, stdout, stderr, cmd) {
-      console.log(cmd);
-      if (error) {
-        console.log(error);
-        console.log(stderr);
-      }
-      console.log(stdout);
-    });
+gulp.task('rsync', ['default'], function() {
+  rsync({
+    src: paths.dist + '/*',
+    dest: paths.rsync.destination,
+    args: [
+      '--archive',
+      '--checksum',
+      '--compress',
+      '--delete',
+      '--human-readable',
+      '--partial',
+      '--progress',
+      '--skip-compress=jpg,gif,png,ico',
+      '--stats',
+      '--verbose',
+    ]
+  }, function (error, stdout, stderr, cmd) {
+    console.log(cmd);
+    if (error) {
+      console.log(error);
+      console.log(stderr);
+    }
+    console.log(stdout);
   });
+});
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'adobeFlash']);
+gulp.task('default', ['jade', 'favicon']);
