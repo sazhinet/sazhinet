@@ -1,0 +1,30 @@
+{
+  "home": {
+    "href": "/",
+    "title": "Главная"
+  },
+  "technology": {
+    "href": "/technology",
+    "title": "Технологии"
+  },
+  "objects": {
+    "href": "/objects",
+    "title": "Объекты"
+  },
+  "pricelist": {
+    "href": "/pricelist",
+    "title": "Услуги и цены"
+  },
+  "guruhelp": {
+    "href": "/guruhelp",
+    "title": "Советы специалиста"
+  },
+  "forum": {
+    "href": "/forum",
+    "title": "Форум"
+  },
+  "contacts": {
+    "href": "/contacts",
+    "title": "Контакты"
+  }
+}

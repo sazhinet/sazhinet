@@ -106,6 +106,7 @@ gulp.task('adobeFlash', ['clean'], function() {
 
 gulp.task('jade', ['clean', 'images', 'stylesheets', 'adobeFlash'], function() {
   var myJadeLocals = {};
+  myJadeLocals.menu = require('./app/json/menu.json');
 
   return gulp.src([paths.jade, '!**/layouts/**/*'])
     .pipe(jade({
