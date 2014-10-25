@@ -32,103 +32,19 @@ html(xmlns='http://www.w3.org/1999/xhtml')
             tbody
               tr.top-menu
                 td
-                  a#menu_home(
-                    href='/'
-                    title='Главная'
-                    style='width: 160px; height: 105px;'
-                  )
+                  a#menu_home(href='/' title='Главная')
                 td
-                  a#menu_technology(
-                    onmouseover="MlImageOn('ml_img_2_1')"
-                    onmouseout="MlImageOff('ml_img_2_1')"
-                    href='/technology'
-                    title='Технологии'
-                    style='width: 137px; height: 105px;'
-                  )
-                    img(
-                      src='/assets/technology.jpg'
-                      name='ml_img_2_1'
-                      border='0'
-                      width='137'
-                      height='105'
-                      alt='Технологии'
-                    )
+                  a#menu_technology(href='/technology' title='Технологии')
                 td
-                  a#menu_object(
-                    onmouseover="MlImageOn('ml_img_3_1')"
-                    onmouseout="MlImageOff('ml_img_3_1')"
-                    href='/objects'
-                    title='Объекты'
-                  )
-                    img(
-                      src='/assets/objects.jpg'
-                      name='ml_img_3_1'
-                      border='0'
-                      width='114'
-                      height='105'
-                      alt='Объекты'
-                    )
+                  a#menu_objects(href='/objects' title='Объекты')
+                 td
+                  a#menu_pricelist(href='/pricelist' title='Услуги и цены')
                 td
-                  a#menu_pricelist(
-                    onmouseover="MlImageOn('ml_img_4_1')"
-                    onmouseout="MlImageOff('ml_img_4_1')"
-                    href='/pricelist'
-                    title='Услуги и цены'
-                  )
-                    img(
-                      src='/assets/pricelist.jpg'
-                      name='ml_img_4_1'
-                      border='0'
-                      width='108'
-                      height='105'
-                      alt='Услуги и цены'
-                    )
+                  a#menu_guruhelp(href='/guruhelp' title='Советы специалиста')
                 td
-                  a#menu_guruhelp(
-                    onmouseover="MlImageOn('ml_img_5_1')"
-                    onmouseout="MlImageOff('ml_img_5_1')"
-                    href='/guruhelp'
-                    title='Советы специалиста'
-                  )
-                    img(
-                      src='/assets/guruhelp.jpg'
-                      name='ml_img_5_1'
-                      border='0'
-                      width='148'
-                      height='105'
-                      alt='Советы специалиста'
-                    )
+                  a#menu_forum(href='/forum' title='Форум')
                 td
-                  a#menu_forum(
-                    onmouseover="MlImageOn('ml_img_6_1')"
-                    onmouseout="MlImageOff('ml_img_6_1')"
-                    href='/forum'
-                    title='Форум'
-                  )
-                    img(
-                      src='/assets/forum.jpg'
-                      name='ml_img_6_1'
-                      border='0'
-                      width='116'
-                      height='105'
-                      alt='Форум'
-                    )
-                td
-                  a#menu_contacts(
-                    onmouseover="MlImageOn('ml_img_7_1')"
-                    onmouseout="MlImageOff('ml_img_7_1')"
-                    href='/contacts'
-                    title='Контакты'
-                  )
-                    img(
-                      src='/assets/contacts.jpg'
-                      name='ml_img_7_1'
-                      border='0'
-                      width='183'
-                      height='105'
-                      alt='Контакты'
-                    )
-
+                  a#menu_contacts(href='/contacts' title='Контакты')
         #content
           .content
             #maincont
@@ -149,5 +65,3 @@ html(xmlns='http://www.w3.org/1999/xhtml')
                     td
                     td
                     td
-
-    script(src='/assets/sazhinet.min.js' type='text/javascript')

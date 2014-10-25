@@ -26,7 +26,6 @@
     "gulp-minify-css": "latest",
     "gulp-rev": "latest",
     "gulp-sourcemaps": "latest",
-    "gulp-uglify": "latest",
     "gulp-util": "latest",
     "merge-stream": "latest",
     "rsyncwrapper": "latest"

@@ -16,7 +16,6 @@ var package = require('./package.json');
 var revisioning = require('gulp-rev');
 var rsync = require('rsyncwrapper').rsync;
 var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
 
 var paths = {
   assets: 'dist/assets',
@@ -25,12 +24,10 @@ var paths = {
   favicon: 'app/images/favicon.ico',
   images: 'app/images/**/*.{png,jpg,gif}',
   jade: 'app/jade/**/*.jade',
-  js: 'app/js/*.js',
   less: 'app/less/*.less',
   manifestNames: {
     adobeFlash: 'adobe-flash-manifest.json',
     images: 'images-manifest.json',
-    javascripts: 'javascripts-manifest.json',
     stylesheets: 'stylesheets-manifest.json'
   },
   manifestPaths: {},
@@ -99,17 +96,6 @@ gulp.task('stylesheets', ['clean', 'images'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('javascripts', ['clean', 'images'], function() {
-  return gulp.src(paths.js)
-    .pipe(uglify())
-    .pipe(concat(package.name + '.min.js'))
-    .pipe(applyRevisioningManifest(paths.manifestPaths.images))
-    .pipe(revisioning())
-    .pipe(gulp.dest(paths.assets))
-    .pipe(revisioning.manifest({path: paths.manifestNames.javascripts}))
-    .pipe(gulp.dest(paths.dist));
-});
-
 gulp.task('adobeFlash', ['clean'], function() {
   return gulp.src(paths.swf)
     .pipe(revisioning())
@@ -118,7 +104,7 @@ gulp.task('adobeFlash', ['clean'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', ['clean', 'images', 'stylesheets', 'javascripts', 'adobeFlash'], function() {
+gulp.task('jade', ['clean', 'images', 'stylesheets', 'adobeFlash'], function() {
   var myJadeLocals = {};
 
   return gulp.src([paths.jade, '!**/layouts/**/*'])
@@ -132,7 +118,6 @@ gulp.task('jade', ['clean', 'images', 'stylesheets', 'javascripts', 'adobeFlash'
     }))
     .pipe(applyRevisioningManifest(paths.manifestPaths.images))
     .pipe(applyRevisioningManifest(paths.manifestPaths.stylesheets))
-    .pipe(applyRevisioningManifest(paths.manifestPaths.javascripts))
     .pipe(applyRevisioningManifest(paths.manifestPaths.adobeFlash))
     .pipe(gulp.dest(paths.dist));
 });
@@ -143,7 +128,6 @@ gulp.task('watch', function() {
     paths.favicon,
     paths.images,
     paths.jade,
-    paths.js,
     paths.less
   ], ['default']);
 });
@@ -156,7 +140,7 @@ gulp.task('connect', ['watch', 'default'], function() {
 
 gulp.task(
   'rsync',
-  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'javascripts', 'adobeFlash'],
+  ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'adobeFlash'],
   function() {
     rsync({
       src: paths.dist + '/*',
@@ -185,4 +169,4 @@ gulp.task(
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'javascripts', 'adobeFlash']);
+gulp.task('default', ['clean', 'jade', 'favicon', 'images', 'stylesheets', 'adobeFlash']);
