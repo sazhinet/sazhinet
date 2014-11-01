@@ -71,6 +71,8 @@ gulp.task('favicon', ['clean'], function() {
 });
 
 gulp.task('robotsTxt', ['clean'], function() {
+  // Robots exclusion standard
+  // <http://en.wikipedia.org/wiki/Robots_exclusion_standard>.
   return gulp.src(paths.robotsTxt)
     .pipe(gulp.dest(paths.dist));
 });
