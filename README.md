@@ -41,3 +41,10 @@ npm start
 ````bash
 `npm bin`/gulp rsync --destination=example.com:/path/to/sazhinet
 ````
+
+License
+-------
+
+Copyright (c) 2014 Vladimir Shelkovskiy <leon_v80@mail.ru>,
+Danil Kutkevich <danil@kutkevich.org>. See the LICENSE file for
+license rights and limitations (MIT).
