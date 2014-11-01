@@ -166,12 +166,13 @@ gulp.task('rsync', ['default'], function() {
       '--checksum',
       '--compress',
       '--delete',
+      '--exclude "*.json"',
       '--human-readable',
       '--partial',
       '--progress',
       '--skip-compress=jpg,gif,png,ico',
       '--stats',
-      '--verbose',
+      '--verbose'
     ]
   }, function (error, stdout, stderr, cmd) {
     console.log(cmd);
