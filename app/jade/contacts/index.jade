@@ -1,0 +1,43 @@
+extends ../layouts/application.jade
+
+block title
+  title Контакты
+
+block menu
+  - var active = 'contacts';
+
+block content
+  .article
+    #contacts
+      table(border='0' cellpadding='0' cellspacing='0' width='100%')
+        tbody
+          tr
+            td(height='147' valign='top')
+              p.Main_text_white &nbsp;
+              table(width='100%' border='0')
+                tbody
+                  tr
+                    td.Headline(valign='top' width='140')
+                      p КОНТАКТЫ
+                    td.Headline(valign='top' width='120')
+                      p.Body_left_white &nbsp;
+                    td.Headline(valign='top')
+                      p.Body_left_white(style='text-align: justify;').
+                        196105, г. Санкт-Петербург, ул. Сызранская,
+                        д. 16, офис 28
+                      p.Body_left_white(style='text-align: justify;')
+                        | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        | &nbsp; &nbsp;
+                        a(href='mailto:info@sazhi.net') info@sazhi.net
+          tr
+            td(valign='top')
+              #map
+                .iFrameMap(align='center')
+                  iframe(
+                    src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2002.2917769514042!2d30.335789!3d59.877505199999995!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4696300f0de47129%3A0xa1ca02633c9e338c!2sSyzranskaya+ul.%2C+16%2C+28%2C+Sankt-Peterburg%2C+196105!5e0!3m2!1sen!2sru!4v1414843081319'
+                    width='874'
+                    height='500'
+                    frameborder='0'
+                    style='border:0'
+                  )
