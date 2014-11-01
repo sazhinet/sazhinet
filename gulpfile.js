@@ -31,6 +31,7 @@ var paths = {
     stylesheets: 'stylesheets-manifest.json'
   },
   manifestPaths: {},
+  robotsTxt: 'app/txt/robots.txt',
   rsync: {destination: gutil.env.destination},
   swf: 'app/swf/*.swf'
 };
@@ -66,6 +67,11 @@ gulp.task('clean', function(callback) {
 
 gulp.task('favicon', ['clean'], function() {
   return gulp.src(paths.favicon)
+    .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('robotsTxt', ['clean'], function() {
+  return gulp.src(paths.robotsTxt)
     .pipe(gulp.dest(paths.dist));
 });
 
@@ -129,7 +135,8 @@ gulp.task('watch', function() {
     paths.favicon,
     paths.images,
     paths.jade,
-    paths.less
+    paths.less,
+    paths.robotsTxt
   ], ['default']);
 });
 
@@ -167,4 +174,4 @@ gulp.task('rsync', ['default'], function() {
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['jade', 'favicon']);
+gulp.task('default', ['jade', 'favicon', 'robotsTxt']);
