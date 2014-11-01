@@ -25,7 +25,7 @@ nvm install 0 && nvm use 0
 And then
 
 ````bash
-cd /path/to/sazhinet && npm install --python=python2.7
+cd /path/to/sazhinet && npm install
 ````
 
 ### Run
