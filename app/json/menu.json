@@ -16,10 +16,12 @@
     "title": "Услуги и цены"
   },
   "guruhelp": {
+    "disabled": true,
     "href": "/guruhelp",
     "title": "Советы специалиста"
   },
   "forum": {
+    "disabled": true,
     "href": "/forum",
     "title": "Форум"
   },

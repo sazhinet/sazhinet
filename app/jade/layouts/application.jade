@@ -49,7 +49,9 @@ html(xmlns='http://www.w3.org/1999/xhtml')
 
                 each val, key in locals.menu
                   td
-                    if active === key
+                    if val.disabled
+                      span(id='menu_#{key}')
+                    else if active === key
                       a.active(id='menu_#{key}' href=val.href title=val.title)
                     else
                       a(id='menu_#{key}' href=val.href title=val.title)

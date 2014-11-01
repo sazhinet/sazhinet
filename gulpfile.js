@@ -32,6 +32,7 @@ var paths = {
     stylesheets: 'stylesheets-manifest.json'
   },
   manifestPaths: {},
+  menuJson: './app/json/menu.json',
   robotsTxt: 'app/txt/robots.txt',
   rsync: {destination: gutil.env.destination},
   swf: 'app/swf/*.swf'
@@ -115,7 +116,7 @@ gulp.task('adobeFlash', ['clean'], function() {
 
 gulp.task('jade', ['clean', 'images', 'stylesheets', 'adobeFlash'], function() {
   var myJadeLocals = {};
-  myJadeLocals.menu = require('./app/json/menu.json');
+  myJadeLocals.menu = require(paths.menuJson);
 
   return gulp.src([paths.jade, '!**/layouts/**/*'])
     .pipe(jade({
@@ -147,6 +148,7 @@ gulp.task('watch', function() {
     paths.images,
     paths.jade,
     paths.less,
+    paths.menuJson,
     paths.robotsTxt
   ], ['default']);
 });
