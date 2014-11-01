@@ -25,6 +25,7 @@
     "gulp-less": "latest",
     "gulp-minify-css": "latest",
     "gulp-rev": "latest",
+    "gulp-sitemap": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-util": "latest",
     "merge-stream": "latest",

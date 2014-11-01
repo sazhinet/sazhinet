@@ -15,6 +15,7 @@ var minifyCSS = require('gulp-minify-css');
 var package = require('./package.json');
 var revisioning = require('gulp-rev');
 var rsync = require('rsyncwrapper').rsync;
+var sitemap = require('gulp-sitemap');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
@@ -131,6 +132,14 @@ gulp.task('jade', ['clean', 'images', 'stylesheets', 'adobeFlash'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('sitemap', ['jade'], function () {
+  return gulp.src([paths.dist + '/**/*.html', '!**/50x.html'])
+    .pipe(sitemap({
+      siteUrl: 'http://sazhi.net'
+    }))
+    .pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('watch', function() {
   gulp.watch([
     paths.css,
@@ -176,4 +185,4 @@ gulp.task('rsync', ['default'], function() {
 
 gulp.task('test', ['default']);
 
-gulp.task('default', ['jade', 'favicon', 'robotsTxt']);
+gulp.task('default', ['sitemap', 'favicon', 'robotsTxt']);
