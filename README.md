@@ -18,29 +18,29 @@ If node.js is not installed get
 
 Then
 
-````bash
+```bash
 nvm install 0 && nvm use 0
-````
+```
 
 And then
 
-````bash
+```bash
 cd /path/to/sazhinet && npm install
-````
+```
 
 ### Run
 
 Start server on port 8080
 
-````bash
+```bash
 npm start
-````
+```
 
 ### Deploy
 
-````bash
+```bash
 `npm bin`/gulp rsync --destination=example.com:/path/to/sazhinet
-````
+```
 
 License
 -------
